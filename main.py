@@ -3,7 +3,6 @@ import uvicorn
 
 app = FastAPI()
 
-
 @app.get("/hello")
 def read_root():
     return {"message": "This message from the first app, it\'s a get API!"}
