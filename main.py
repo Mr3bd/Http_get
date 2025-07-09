@@ -3,6 +3,10 @@ import uvicorn
 
 app = FastAPI()
 
+# API_KEY = "sk_test_123456789abcdef"
+
+k = "sk_test_123456789abcdef"
+
 @app.get("/hello")
 def read_root():
     return {"message": "This message from the first app, it\'s a get API!"}
