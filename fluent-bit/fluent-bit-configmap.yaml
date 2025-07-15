@@ -36,6 +36,12 @@ data:
         K8S-Logging.Parser  On
         K8S-Logging.Exclude On
         Kube_Tag_Prefix     kube.var.log.containers.
+    
+    [FILTER]
+        Name          record_modifier
+        Match         kube.*
+        Match_Regex   ^\d{16}$
+        Record log "${re.sub(r'\b\d{16}\b', '****************, record['log']')}"
 
     [OUTPUT]
         Name            es
