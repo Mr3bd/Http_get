@@ -41,7 +41,7 @@ data:
         Name          record_modifier
         Match         kube.*
         Match_Regex   ^\d{16}$
-        Record log "${re.sub(r'\b\d{16}\b', '****************, record['log']')}"
+        Record log "${re.sub(r'\b\d{16}\b', '****************', record['log']')}"
 
     [OUTPUT]
         Name            es
