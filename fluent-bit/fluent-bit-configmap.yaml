@@ -38,10 +38,10 @@ data:
         Kube_Tag_Prefix     kube.var.log.containers.
     
     [FILTER]
-        Name          record_modifier
-        Match         kube.*
-        Match_Regex   ^\d{16}$
-        Record log "${re.sub(r'\b\d{16}\b', '****************', record['log']')}"
+        Name              lua
+        Match             kube.*
+        script            mask_credit_card.lua
+        call              mask_cc_number
 
     [OUTPUT]
         Name            es
@@ -51,8 +51,8 @@ data:
         Logstash_Format On
         Logstash_Prefix fluent-bit
         Retry_Limit     False
-        HTTP_User       elastic
-        HTTP_Passwd     P@ssw0rd1
+        HTTP_User       ${FLUENT_ELASTICSEARCH_USER}
+        HTTP_Passwd     ${FLUENT_ELASTICSEARCH_PASSWORD}
         Suppress_Type_Name On
         Buffer_Size     4MB
         Trace_Error    On
@@ -65,3 +65,12 @@ data:
         Time_Format %Y-%m-%dT%H:%M:%S.%LZ
         Decode_Field_As escaped_utf8 log do_next
         Decode_Field_As json log
+
+  mask_credit_card.lua: |
+    function mask_cc_number(tag, timestamp, record)
+        local log = record["log"]
+        if log then
+            record["log"] = string.gsub(log, "%d%d%d%d%d%d%d%d%d%d%d%d%d%d%d%d", "****************")
+        end
+        return 1, timestamp, record
+    end
