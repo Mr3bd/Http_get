@@ -1,0 +1,23 @@
+replicaCount: 2
+
+image:
+  repository: 192.168.20.30:5000/http_get_jenkins_nexus
+  tag: latest
+  pullSecret: my-registry-secret
+
+service:
+  type: NodePort
+  port: 8000
+  nodePort: 30009
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 20
+
+config:
+  MY_CONFIG: "This is from ConfigMap From Helm"
+
+secret:
+  MY_SECRET: bXktc2VjcmV0LXZhbHVl
