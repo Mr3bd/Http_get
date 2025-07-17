@@ -16,7 +16,7 @@ spec:
         - name: my-registry-secret 
       containers:
         - name: myapp-container
-          image: 192.168.20.30:5000/http_get_jenkins_nexus:latest
+          image: 192.168.20.231:5000/http_get_jenkins_nexus:latest
           ports:
             - containerPort: 8000
           envFrom:

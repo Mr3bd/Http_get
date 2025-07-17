@@ -14,7 +14,7 @@ def read_root():
 
     logger.error(f"I'm Abdulrahman")
     logger.error(f"4797418596412354")
-    return {"message": f"Hello!! Config: {config_value}, Secret: {secret_value}"}
+    return {"message": f"Hello!! Terraform Config: {config_value}, Secret: {secret_value}"}
 
 
 if __name__ == "__main__":

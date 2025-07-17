@@ -46,7 +46,7 @@ data:
     [OUTPUT]
         Name            es
         Match           *
-        Host            192.168.20.30
+        Host            192.168.20.231
         Port            9200
         Logstash_Format On
         Logstash_Prefix fluent-bit

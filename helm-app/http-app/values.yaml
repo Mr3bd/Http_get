@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: 192.168.20.30:5000/http_get_jenkins_nexus
+  repository: 192.168.20.231:5000/http_get_jenkins_nexus
   tag: latest
   pullSecret: my-registry-secret
 
